@@ -1,5 +1,4 @@
 import io.restassured.RestAssured;
-import io.restassured.response.Response;
 import org.example.Register;
 import org.junit.After;
 import org.junit.Before;
