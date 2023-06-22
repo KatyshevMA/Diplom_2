@@ -1,3 +1,4 @@
+import io.qameta.allure.junit4.DisplayName;
 import io.restassured.RestAssured;
 import org.example.Login;
 import org.junit.Before;
@@ -14,6 +15,7 @@ public class TestLogin {
     }
 
     @Test
+    @DisplayName("Метод POST/auth/register. Успешная авторизация")
     public void checkLoginSuccess() {
         Login login  = new Login("successlogin@email.ru", "success");
         given()
@@ -27,6 +29,7 @@ public class TestLogin {
     }
 
     @Test
+    @DisplayName("Метод POST/auth/register. Ошибка авторизации с несуществующим логином")
     public void checkLoginIncorrectEmailUnauthorized() {
         Login login  = new Login("incorrectemail@vvv.ru", "incorrect");
         given()
@@ -40,6 +43,7 @@ public class TestLogin {
     }
 
     @Test
+    @DisplayName("Метод POST/auth/register. Ошибка авторизации с невалидным паролем")
     public void checkLoginIncorrectPasswordUnauthorized() {
         Login login  = new Login("successlogin@email.ru", "incorrect");
         given()
@@ -53,6 +57,7 @@ public class TestLogin {
     }
 
     @Test
+    @DisplayName("Метод POST/auth/register. Ошибка авторизации с пустым Email")
     public void checkLoginWithoutEmailUnauthorized() {
         Login login  = new Login("", "noname");
         given()
@@ -66,6 +71,7 @@ public class TestLogin {
     }
 
     @Test
+    @DisplayName("Метод POST/auth/register. Ошибка авторизации с пустым Password")
     public void checkLoginWithoutPasswordUnauthorized() {
         Login login  = new Login("successlogin@email.ru", "");
         given()

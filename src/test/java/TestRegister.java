@@ -1,3 +1,4 @@
+import io.qameta.allure.junit4.DisplayName;
 import io.restassured.RestAssured;
 import org.example.Register;
 import org.junit.After;
@@ -17,6 +18,7 @@ public class TestRegister {
     }
 
     @Test
+    @DisplayName("Метод POST/auth/register. Успешная регистрация")
     public void checkRegisterSuccess() {
         Register reg  = new Register("mmm@xxxx.ru", "1234", "register111");
         token = given()
@@ -31,6 +33,7 @@ public class TestRegister {
     }
 
     @Test
+    @DisplayName("Метод POST/auth/register. Ошибка повторной регистрации")
     public void checkRegisterDuplicateError() {
         Register reg  = new Register("double_login@xxxx.ru", "1234", "double_login");
         token = given()
@@ -54,6 +57,7 @@ public class TestRegister {
     }
 
     @Test
+    @DisplayName("Метод POST/auth/register. Ошибка регистрации c пустым Email")
     public void checkRegisterWithoutEmailError() {
         Register reg  = new Register("", "noemail", "noemail");
         given()
@@ -67,6 +71,7 @@ public class TestRegister {
     }
 
     @Test
+    @DisplayName("Метод POST/auth/register. Ошибка регистрации c пустым Password")
     public void checkRegisterWithoutPassError() {
         Register reg  = new Register("nopass@pass.ru", "", "nopass");
         given()
@@ -80,6 +85,7 @@ public class TestRegister {
     }
 
     @Test
+    @DisplayName("Метод POST/auth/register. Ошибка регистрации c пустым Name")
     public void checkRegisterWithoutNameError() {
         Register reg  = new Register("noname@vvv.ru", "noname", "");
         given()

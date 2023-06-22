@@ -1,3 +1,4 @@
+import io.qameta.allure.junit4.DisplayName;
 import io.restassured.RestAssured;
 import org.example.Login;
 import org.junit.Before;
@@ -15,6 +16,7 @@ public class TestCreateOrder {
     }
 
     @Test
+    @DisplayName("Метод POST/orders. Успешный заказ с одним ингредиентом")
     public void checkOneIngredientOrderSuccess() {
         Login login  = new Login("loginfororder@email.ru", "1234");
         token = given()
@@ -40,6 +42,7 @@ public class TestCreateOrder {
     }
 
     @Test
+    @DisplayName("Метод POST/orders. Успешный заказ с двумя ингредиентами")
     public void checkTwoIngredientsOrderSuccess() {
         Login login  = new Login("loginfororder@email.ru", "1234");
         token = given()
@@ -65,6 +68,7 @@ public class TestCreateOrder {
     }
 
     @Test
+    @DisplayName("Метод POST/orders. Ошибка заказа без ингредиентов")
     public void checkWithoutIngredientOrderBadRequest() {
         Login login  = new Login("loginfororder@email.ru", "1234");
         token = given()
@@ -90,6 +94,7 @@ public class TestCreateOrder {
     }
 
     @Test
+    @DisplayName("Метод POST/orders. Ошибка заказа с некорректным хэшем ингредиента")
     public void checkIncorrectIngredientOrderServerError() {
         Login login  = new Login("loginfororder@email.ru", "1234");
         token = given()
@@ -114,6 +119,7 @@ public class TestCreateOrder {
     }
 
     @Test
+    @DisplayName("Метод POST/orders. Ошибка заказа. Пользователь не авторизован")
     public void checkOrderWithoutAuthorizationBadRequest() {
         String json = "{\"ingredients\": [\"61c0c5a71d1f82001bdaaa6d\"]}";
         given()

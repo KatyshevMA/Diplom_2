@@ -1,3 +1,4 @@
+import io.qameta.allure.junit4.DisplayName;
 import io.restassured.RestAssured;
 import org.example.Register;
 import org.junit.After;
@@ -16,6 +17,7 @@ public class TestGetOrder {
     }
 
     @Test
+    @DisplayName("Метод GET/orders. Успешное получение заказа")
     public void checkGetOrderSuccess() {
         Register reg  = new Register("getorder1@xxxx.ru", "1234", "getorder1");
         token = given()
@@ -49,6 +51,7 @@ public class TestGetOrder {
     }
 
     @Test
+    @DisplayName("Метод GET/orders. Ошибка получения заказа. Пользователь не авторизован")
     public void checkGetOrderWithoutAuthorizationUnauthorized() {
         given()
                 .header("Content-type", "application/json")

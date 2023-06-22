@@ -1,3 +1,4 @@
+import io.qameta.allure.junit4.DisplayName;
 import io.restassured.RestAssured;
 import org.example.Register;
 import org.junit.After;
@@ -17,6 +18,7 @@ public class TestRefresh {
     }
 
     @Test
+    @DisplayName("Метод PATCH/auth/user. Успешное изменение Email")
     public void checkRefreshEmailSuccess() {
         Register reg  = new Register("refreshemail@xxxx.ru", "1234", "refreshemail");
         token = given()
@@ -42,6 +44,7 @@ public class TestRefresh {
     }
 
     @Test
+    @DisplayName("Метод PATCH/auth/user. Успешное изменение Password")
     public void checkRefreshNameSuccess() {
         Register reg  = new Register("refreshname@xxxx.ru", "1234", "refreshname");
         token = given()
@@ -67,6 +70,7 @@ public class TestRefresh {
     }
 
     @Test
+    @DisplayName("Метод PATCH/auth/user. Успешное изменение Email и Password")
     public void checkRefreshAllSuccess() {
         Register reg  = new Register("refreshall@xxxx.ru", "1234", "refreshall");
         token = given()
@@ -93,8 +97,9 @@ public class TestRefresh {
     }
 
     @Test
+    @DisplayName("Метод PATCH/auth/user. Успешное изменение данных на введенные ранее")
     public void checkRefreshNothingSuccess() {
-        Register reg  = new Register("refreshanothing@xxxx.ru", "1234", "refreshanothing");
+        Register reg  = new Register("refreshnothing@xxxx.ru", "1234", "refreshnothing");
         token = given()
                 .header("Content-type", "application/json")
                 .body(reg)
@@ -105,7 +110,7 @@ public class TestRefresh {
                 .body("success", is(true))
                 .extract().jsonPath().get("accessToken");
 
-        String json = "{\"email\": \"refreshanothing@xxxx.ru\", \"name\": \"refreshanothing\"}";
+        String json = "{\"email\": \"refreshnothing@xxxx.ru\", \"name\": \"refreshnothing\"}";
         given()
                 .header("Content-type", "application/json")
                 .header("Authorization", token)
@@ -119,6 +124,7 @@ public class TestRefresh {
     }
 
     @Test
+    @DisplayName("Метод PATCH/auth/user. Ошибка изменения данных. Email уже занят")
     public void checkRefreshEmailAlreadyExistsForbidden() {
         Register reg  = new Register("refreshalready@xxxx.ru", "1234", "refreshalready");
         token = given()
@@ -144,6 +150,7 @@ public class TestRefresh {
     }
 
     @Test
+    @DisplayName("Метод PATCH/auth/user. Ошибка изменения данных. Пользователь не авторизован")
     public void checkRefreshWithoutAuthorizationUnauthorized() {
         String json = "{\"email\": \"noauthorization@xxxx.ru\"}";
         given()
