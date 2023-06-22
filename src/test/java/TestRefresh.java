@@ -119,8 +119,8 @@ public class TestRefresh {
                 .patch("/api/auth/user")
                 .then()
                 .statusCode(200)
-                .body("user.email", equalTo("refreshanothing@xxxx.ru"))
-                .body("user.name", equalTo("refreshanothing"));
+                .body("user.email", equalTo("refreshnothing@xxxx.ru"))
+                .body("user.name", equalTo("refreshnothing"));
     }
 
     @Test
