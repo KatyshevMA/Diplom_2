@@ -10,7 +10,7 @@ import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
 
 public class TestRegister {
-    private String token = "токен";
+    private String token;
 
     @Before
     public void setUp() {
@@ -100,10 +100,12 @@ public class TestRegister {
 
     @After
     public void tearDown() {
-        given()
-                .header("Authorization", token)
-                .when()
-                .delete("/api/auth/user");
+        if (token != null) {
+            given()
+                    .header("Authorization", token)
+                    .when()
+                    .delete("/api/auth/user");
+        }
     }
 
 }
