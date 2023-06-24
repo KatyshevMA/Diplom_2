@@ -118,6 +118,7 @@ public class TestCreateOrder {
                 .statusCode(500);
     }
 
+    //В этом кейсе заложена проверка ошибки, т.к. в документации API прописано, что заказ не моежт выполнен без авторизации. По факту проверка падает, т.к. заказ выполняется
     @Test
     @DisplayName("Метод POST/orders. Ошибка заказа. Пользователь не авторизован")
     public void checkOrderWithoutAuthorizationBadRequest() {

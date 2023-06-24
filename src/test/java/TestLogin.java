@@ -15,7 +15,7 @@ public class TestLogin {
     }
 
     @Test
-    @DisplayName("Метод POST/auth/register. Успешная авторизация")
+    @DisplayName("Метод POST/auth/login. Успешная авторизация")
     public void checkLoginSuccess() {
         Login login  = new Login("successlogin@email.ru", "success");
         given()
@@ -29,7 +29,7 @@ public class TestLogin {
     }
 
     @Test
-    @DisplayName("Метод POST/auth/register. Ошибка авторизации с несуществующим логином")
+    @DisplayName("Метод POST/auth/login. Ошибка авторизации с несуществующим логином")
     public void checkLoginIncorrectEmailUnauthorized() {
         Login login  = new Login("incorrectemail@vvv.ru", "incorrect");
         given()
@@ -43,7 +43,7 @@ public class TestLogin {
     }
 
     @Test
-    @DisplayName("Метод POST/auth/register. Ошибка авторизации с невалидным паролем")
+    @DisplayName("Метод POST/auth/login. Ошибка авторизации с невалидным паролем")
     public void checkLoginIncorrectPasswordUnauthorized() {
         Login login  = new Login("successlogin@email.ru", "incorrect");
         given()
@@ -57,7 +57,7 @@ public class TestLogin {
     }
 
     @Test
-    @DisplayName("Метод POST/auth/register. Ошибка авторизации с пустым Email")
+    @DisplayName("Метод POST/auth/login. Ошибка авторизации с пустым Email")
     public void checkLoginWithoutEmailUnauthorized() {
         Login login  = new Login("", "noname");
         given()
@@ -71,7 +71,7 @@ public class TestLogin {
     }
 
     @Test
-    @DisplayName("Метод POST/auth/register. Ошибка авторизации с пустым Password")
+    @DisplayName("Метод POST/auth/login. Ошибка авторизации с пустым Password")
     public void checkLoginWithoutPasswordUnauthorized() {
         Login login  = new Login("successlogin@email.ru", "");
         given()
